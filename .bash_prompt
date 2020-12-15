@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+function virtualenv_info(){
+    # Get Virtual Env
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Strip out the path and just leave the env name
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        # In case you don't have one activated
+        venv=''
+    fi
+    [[ -n "$venv" ]] && echo "(venv:$venv) "
+}
+
 prompt_git() {
 	local s='';
 	local branchName='';
@@ -81,9 +93,12 @@ else
 	hostStyle="${green}";
 fi;
 
+VENV="\$(virtualenv_info)";
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # Set the terminal title and prompt.
 PS1="\[\033]0;\W\007\]\n"; # working directory base name
-PS1+="\[${black}[\t] "; # time
+PS1+="${VENV}\[${black}[\t] "; # time
 PS1+="\[${userStyle}\]\u"; # username
 PS1+="\[${white}\] at ";
 PS1+="\[${hostStyle}\]\h"; # host
