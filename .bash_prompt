@@ -97,7 +97,7 @@ VENV="\$(virtualenv_info)";
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Set the terminal title and prompt.
-PS1="\[\033]0;\W\007\]\n"; # working directory base name
+PS1="\[\033]0;\W\007\]"$'\n'; # working directory base name
 PS1+="${VENV}\[${black}[\t] "; # time
 PS1+="\[${userStyle}\]\u"; # username
 PS1+="\[${white}\] at ";
@@ -105,9 +105,6 @@ PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${white}\] in ";
 PS1+="\[${yellow}\]\W"; # working directory full path
 PS1+="\$(prompt_git \"\[${white}\] on \[${cyan}\]\" \"\[${white}\]\")"; # Git repository details
-PS1+="\n";
+PS1+=$'\n';
 PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
 export PS1;
-
-PS2="\[${yellow}\]→ \[${reset}\]";
-export PS2;
