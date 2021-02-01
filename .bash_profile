@@ -22,6 +22,11 @@ shopt -s cmdhist
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
 # ^ the only downside with this is [up] on the readline will go over all history not just this bash session.
 
 ##
