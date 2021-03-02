@@ -48,4 +48,7 @@ shopt -s globstar 2> /dev/null
 
 ## Welcome screen
 
-fortune | cowsay -f tux
+if which fortune &>/dev/null && which cowsay &>/dev/null;
+then
+	fortune | cowsay -f tux
+fi
