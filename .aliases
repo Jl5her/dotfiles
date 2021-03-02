@@ -12,7 +12,11 @@ alias do="cd ~/Documents"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias dev="cd ~/Dev"
-alias g="cd ~/Google\ Drive"
+
+alias no-cors-chrome="open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir=\"/tmp/chrome_dev_test\" --disable-web-security"
+alias edit='open -a /Applications/Sublime\ Text.app '
+alias dc='docker-compose'
+alias dcr='docker-compose down && docker-compose up -d'
 
 # Get macOS Software Updates, and update Homebrew, npm, and their installed packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g'

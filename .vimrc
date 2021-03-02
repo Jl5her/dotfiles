@@ -3,7 +3,7 @@ set nocompatible
 " Syntax Highlighting {{{
 set t_Co=256
 set background=dark
-colorscheme blue
+colorscheme delek
 syntax on	
 " }}}
 
