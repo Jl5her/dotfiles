@@ -34,7 +34,7 @@ export NVM_DIR="$HOME/.nvm"
 ##
 
 # Case-insensitive globbing (used in pathname expansion)
-shopt -S nocaseglob;
+shopt -s nocaseglob;
 
 # Correct spelling errors in arguments supplied to cd
 shopt -s cdspell;
