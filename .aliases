@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Easier navigation .., ..., ...., ...... and ~
 alias ..="cd .."
 alias ...="cd ../.."
@@ -7,11 +6,9 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~" # Sometimes `cd` is faster to type
 
+alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+
 # Shortcuts
-alias do="cd ~/Documents"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias dev="cd ~/Dev"
 
 alias no-cors-chrome="open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir=\"/tmp/chrome_dev_test\" --disable-web-security"
 alias edit='open -a /Applications/Sublime\ Text.app '
@@ -23,7 +20,6 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
@@ -39,4 +35,4 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 alias path='echo -e ${PATH//:/\\n}'
 
-
+alias vim="nvim"

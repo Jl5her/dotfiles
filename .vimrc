@@ -3,8 +3,8 @@ set nocompatible
 " Syntax Highlighting {{{
 set t_Co=256
 set background=dark
-colorscheme delek
-syntax on	
+colorscheme default
+syntax on
 " }}}
 
 set autoindent " Copy indent from last line when starting new line
