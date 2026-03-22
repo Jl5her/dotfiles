@@ -1,7 +1,3 @@
-for file in ~/.{bash_prompt,aliases,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
 bind Space:magic-space
@@ -43,43 +39,34 @@ shopt -s globstar 2> /dev/null
 # Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Ghostty shell integration
+if [ -n "$GHOSTTY_RESOURCES_DIR" ]; then
+  source "$GHOSTTY_RESOURCES_DIR/shell-integration/bash/ghostty.bash"
+fi
+
 export PATH="$PATH:/Users/jack/.dotnet/tools"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-    else
-        export PATH="$PATH:/opt/homebrew/Caskroom/miniforge/base/bin"
-    fi
+  if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+    . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+  else
+    export PATH="$PATH:/opt/homebrew/Caskroom/miniforge/base/bin"
+  fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # Java
 export PATH="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home/bin:$PATH"
-
-xcode_dev_dir='/Applications/Xcode.app/Contents/Developer'
-git_core="$xcode_dev_dir/usr/share/git-core"
-git_completion="$git_core/git-completion.bash"
-[ -x "$(which git)" ] && \
-    [ -f "$git_completion" ] && \
-    source "$git_completion"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
-source ~/completion-for-pnpm.bash
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/jack/.lmstudio/bin"
@@ -107,21 +94,11 @@ export PATH=/Users/jack/Library/Android/sdk/platform-tools:$PATH
 
 complete -C /opt/homebrew/bin/terraform terraform
 
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-  . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-fi
-
-    [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
-
-# NVM (Node Version Manager
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # PyEnv (Python Env)
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+for file in ~/.{aliases,bash_prompt,completions,extra}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
